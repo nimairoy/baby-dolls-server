@@ -37,26 +37,26 @@ async function run() {
         const galleryCollection = client.db('babydollDB').collection('gallery');
         const categoryCollection = client.db('babydollDB').collection('category');
 
-       
+
         // get all the category items of react tab
-        app.get('/categories', async(req, res)=>{
+        app.get('/categories', async (req, res) => {
             const result = await categoryCollection.find().toArray();
             res.send(result);
         })
 
 
         // get all the gallery image
-        app.get('/galleries', async(req, res)=>{
+        app.get('/galleries', async (req, res) => {
             const result = await galleryCollection.find().toArray();
             res.send(result);
         })
 
-         // get some data
-         app.get('/dolls', async(req, res)=>{
+        // get some data
+        app.get('/dolls', async (req, res) => {
             // console.log(req.query)
             let query = {};
-            if(req.query?.email){
-                query = {email: req.query.email}
+            if (req.query?.email) {
+                query = { email: req.query.email }
                 console.log(query)
             }
             const result = await dollsCollection.find(query).toArray();
@@ -76,19 +76,43 @@ async function run() {
             const result = await dollsCollection.findOne(query);
             res.send(result);
         })
-      
+
 
         // add or insert a new doll
-        app.post('/dolls', async(req, res)=>{
+        app.post('/dolls', async (req, res) => {
             const doll = req.body;
             const result = await dollsCollection.insertOne(doll);
             res.send(result);
-        })   
-        
-        // delete 
-        app.delete('/dolls/:id', async(req, res)=> {
+        })
+
+        // update dolls items
+        app.put('/dolls/:id', async (req, res) => {
             const id = req.params.id;
-            const query = { _id: new ObjectId(id)};
+            console.log(id)
+            const filter = { _id: new ObjectId(id) };
+            const options = { upsert: true };
+            const updatedDoll = req.body;
+            // console.log(updatedDoll)
+            const doll = {
+                $set: {
+                    doll_name: updatedDoll.doll_name,
+                    photo: updatedDoll.photo,
+                    price: updatedDoll.price,
+                    quantity: updatedDoll.quantity,
+                    description: updatedDoll.description,
+                    ratings: updatedDoll.ratings,
+                    category: updatedDoll.category
+                }
+            }
+            // console.log(doll)
+            const result = await dollsCollection.updateOne(filter, doll, options);
+            res.send(result);
+        })
+
+        // delete 
+        app.delete('/dolls/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
             const result = await dollsCollection.deleteOne(query);
             res.send(result);
         })
