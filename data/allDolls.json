@@ -1,0 +1,125 @@
+[
+    {
+        "title": "Cute Dolls",
+        "content": [
+            {
+                "id": "001",
+                "doll_name": "Kindness Club Sun is Fun Outfit Set",
+                "seller_email": "pranto@gmail.com",
+                "photo": "https://store.madamealexander.com/media/catalog/product/cache/a79f278834ffe9498a788bbf4f0dda3e/k/i/kindnessclubbrooks_dollft_1100.jpg",
+                "seller_name": "Pranto ",
+                "price": "70",
+                "quantity": "45",
+                "description": "Sun is Fun Outfit Set is made for 14” Kindness Club dolls. The outfit …",
+                "ratings": "5",
+                "category": "Cute Dolls"
+            },
+            {
+                "id" : "002",
+                "doll_name": "Cute Baby",
+                "seller_email": "jasim@gmail.com",
+                "photo": "https://store.madamealexander.com/media/catalog/product/cache/a79f278834ffe9498a788bbf4f0dda3e/k/i/kindnessclubhappyhearts_dollft_1100.jpg",
+                "seller_name": "Jasim",
+                "price": "50",
+                "quantity": "10",
+                "description": "This adorable 12 Baby Lexi cloth doll is soft, cuddly, and perfect fo…",
+                "ratings": "5",
+                "category": "cute baby doll"
+            },
+            {
+                "id" : "003",
+                "doll_name": "Juliya Dolls ",
+                "seller_email": "jasim@gmail.com",
+                "photo": "https://store.madamealexander.com/media/catalog/product/cache/a79f278834ffe9498a788bbf4f0dda3e/k/i/kindnessclubkindiscool_dollft_1100.jpg",
+                "seller_name": "Jasim",
+                "price": "40",
+                "quantity": "14",
+                "description": "This adorable 12 Baby Lexi cloth doll is soft, cuddly, and perfect fo…",
+                "ratings": "5",
+                "category": "cute baby doll"
+            }
+        ]
+    },
+    {
+        "title": "Playing Dolls",
+        "content": [
+            {
+                "id": "00122",
+                "doll_name": "Cheerleader",
+                "seller_email": "pranto@gmail.com",
+                "photo": "https://store.madamealexander.com/media/catalog/product/cache/a79f278834ffe9498a788bbf4f0dda3e/a/r/artist_cheerleader_dollft-b_1100.jpg",
+                "seller_name": "Pranto ",
+                "price": "49.45",
+                "quantity": "4",
+                "description": "Sun is Fun Outfit Set is made for 14” Kindness Club dolls. The outfit …",
+                "ratings": "3.7",
+                "category": "Playing Dolls"
+            },
+            {
+                "id" : "00222",
+                "doll_name": "Camping + Chess",
+                "seller_email": "jasim@gmail.com",
+                "photo": "https://store.madamealexander.com/media/catalog/product/cache/a79f278834ffe9498a788bbf4f0dda3e/c/a/camping_chess_dollft_1100.jpg",
+                "seller_name": "Jasim",
+                "price": "75.9",
+                "quantity": "23",
+                "description": "This adorable 12 Baby Lexi cloth doll is soft, cuddly, and perfect fo…",
+                "ratings": "4.8",
+                "category": "Playing Dolls"
+            },
+            {
+                "id" : "00322",
+                "doll_name": "Candy + Coding",
+                "seller_email": "jasim@gmail.com",
+                "photo": "https://store.madamealexander.com/media/catalog/product/cache/a79f278834ffe9498a788bbf4f0dda3e/2/0/20394_its_all_me_candy_coding__laydown.jpg",
+                "seller_name": "Jasim",
+                "price": "43",
+                "quantity": "17",
+                "description": "This adorable 12 Baby Lexi cloth doll is soft, cuddly, and perfect fo…",
+                "ratings": "4.5",
+                "category": "Playing Dolls"
+            }
+        ]
+    },
+    {
+        "title": "Collectible Dolls",
+        "content": [
+            {
+                "id": "00133",
+                "doll_name": "Christmas Frost",
+                "seller_email": "pranto@gmail.com",
+                "photo": "https://store.madamealexander.com/media/catalog/product/cache/a79f278834ffe9498a788bbf4f0dda3e/x/m/xmas_frost_main.jpg",
+                "seller_name": "Pranto ",
+                "price": "170",
+                "quantity": "45",
+                "description": "Sun is Fun Outfit Set is made for 14” Kindness Club dolls. The outfit …",
+                "ratings": "5",
+                "category": "collectible Dolls"
+            },
+            {
+                "id" : "00233",
+                "doll_name": "Santa Paws",
+                "seller_email": "jasim@gmail.com",
+                "photo": "https://store.madamealexander.com/media/catalog/product/cache/a79f278834ffe9498a788bbf4f0dda3e/2/0/20743_santa_paws_main.jpg",
+                "seller_name": "Jasim",
+                "price": "150",
+                "quantity": "12",
+                "description": "This adorable 12 Baby Lexi cloth doll is soft, cuddly, and perfect fo…",
+                "ratings": "4.5",
+                "category": "collectible doll"
+            },
+            {
+                "id" : "00333",
+                "doll_name": "Cissy Queen ",
+                "seller_email": "jasim@gmail.com",
+                "photo": "https://store.madamealexander.com/media/catalog/product/cache/a79f278834ffe9498a788bbf4f0dda3e/c/i/cissy_queen_main.jpg",
+                "seller_name": "Jasim",
+                "price": "720",
+                "quantity": "11",
+                "description": "This adorable 12 Baby Lexi cloth doll is soft, cuddly, and perfect fo…",
+                "ratings": "5",
+                "category": "Collectible doll"
+            }
+        ]
+    }
+]

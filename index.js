@@ -16,50 +16,91 @@ app.get('/', (req, res) => {
 })
 
 
-
-
 const uri = `mongodb+srv://${process.env.USER_DB}:${process.env.PASS_DB}@cluster0.as9pvg2.mongodb.net/?retryWrites=true&w=majority`;
 
-console.log(uri)
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
+    serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+    }
 });
 
 async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    try {
+        // Connect the client to the server	(optional starting in v4.7)
+        await client.connect();
 
-    const dollsCollection = client.db('babydollDB').collection('doll');
+        const dollsCollection = client.db('babydollDB').collection('doll');
+        const galleryCollection = client.db('babydollDB').collection('gallery');
+        const categoryCollection = client.db('babydollDB').collection('category');
 
-    // get all data 
-    app.get('/dolls', async(req, res)=>{
-        const result = await dollsCollection.find().limit(20).toArray();
-        res.send(result);
-    })
-
-    //get a single data
-    app.get('/dolls/:id', async(req, res)=>{
-        const id = req.params.id;
-        const query = {_id: new ObjectId(id)}
-        const result = await dollsCollection.findOne(query);
-        res.send(result);
-    })
+       
+        // get all the category items of react tab
+        app.get('/categories', async(req, res)=>{
+            const result = await categoryCollection.find().toArray();
+            res.send(result);
+        })
 
 
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    // await client.close();
-  }
+        // get all the gallery image
+        app.get('/galleries', async(req, res)=>{
+            const result = await galleryCollection.find().toArray();
+            res.send(result);
+        })
+
+         // get some data
+         app.get('/dolls', async(req, res)=>{
+            // console.log(req.query)
+            let query = {};
+            if(req.query?.email){
+                query = {email: req.query.email}
+                console.log(query)
+            }
+            const result = await dollsCollection.find(query).toArray();
+            res.send(result);
+        })
+
+        // get all dolls
+        app.get('/dolls', async (req, res) => {
+            const result = await dollsCollection.find().limit(20).toArray();
+            res.send(result);
+        })
+
+        //get a single doll
+        app.get('/dolls/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) }
+            const result = await dollsCollection.findOne(query);
+            res.send(result);
+        })
+      
+
+        // add or insert a new doll
+        app.post('/dolls', async(req, res)=>{
+            const doll = req.body;
+            const result = await dollsCollection.insertOne(doll);
+            res.send(result);
+        })   
+        
+        // delete 
+        app.delete('/dolls/:id', async(req, res)=> {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id)};
+            const result = await dollsCollection.deleteOne(query);
+            res.send(result);
+        })
+
+
+        // Send a ping to confirm a successful connection
+        await client.db("admin").command({ ping: 1 });
+        console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    } finally {
+        // Ensures that the client will close when you finish/error
+        // await client.close();
+    }
 }
 run().catch(console.dir);
 
