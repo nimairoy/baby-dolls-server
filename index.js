@@ -36,7 +36,6 @@ async function run() {
         const dollsCollection = client.db('babydollDB').collection('doll');
         const galleryCollection = client.db('babydollDB').collection('gallery');
 
-
         // get all the gallery image
         app.get('/galleries', async (req, res) => {
             const result = await galleryCollection.find().toArray();
@@ -56,15 +55,36 @@ async function run() {
         })
 
 
-        // get data of shop by category 
-        app.get('/dolls/:text', async (req, res) => {
-            // console.log(req.params.text);
-            if (req.params.text === 'collectible-dolls' || req.params.text === 'playing-dolls' || req.params.text === 'cute-dolls') {
-                const result = await dollsCollection.find({ category: req.params.text }).toArray();
-                // console.log(result)
-                return res.send(result);
-            }
+
+        // create index on one element
+        const indexKeys = { doll_name: 1};
+        const indexOptions = {name: 'doll_name'};
+
+        const result = await dollsCollection.createIndex(indexKeys, indexOptions);
+        
+        // search from all baby dolls
+        app.get('/jobSearchByName/:text', async(req, res)=>{
+            const searchText = req.params.text;
+            const result = await dollsCollection.find({
+                $or: [
+                    { doll_name : { $regex: searchText, $options: 'i' }}
+                ]
+            }).toArray();
+            res.send(result)
         })
+
+
+        // get shop by category items
+        app.get('/categories', async (req, res) => {
+            let query = {};
+            console.log(req.query?.category)
+            if (req.query?.category) {
+                query = { category: req.query.category }
+            }
+            const result = await dollsCollection.find(query).limit(8).toArray();
+            res.send(result)
+        })
+
 
         // get all dolls
         app.get('/dolls', async (req, res) => {
