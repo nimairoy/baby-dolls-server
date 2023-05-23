@@ -35,14 +35,6 @@ async function run() {
 
         const dollsCollection = client.db('babydollDB').collection('doll');
         const galleryCollection = client.db('babydollDB').collection('gallery');
-        const categoryCollection = client.db('babydollDB').collection('category');
-
-
-        // get all the category items of react tab
-        app.get('/categories', async (req, res) => {
-            const result = await categoryCollection.find().toArray();
-            res.send(result);
-        })
 
 
         // get all the gallery image
@@ -57,10 +49,21 @@ async function run() {
             let query = {};
             if (req.query?.email) {
                 query = { email: req.query.email }
-                console.log(query)
+                // console.log(query)
             }
             const result = await dollsCollection.find(query).toArray();
             res.send(result);
+        })
+
+
+        // get data of shop by category 
+        app.get('/dolls/:text', async (req, res) => {
+            // console.log(req.params.text);
+            if (req.params.text === 'collectible-dolls' || req.params.text === 'playing-dolls' || req.params.text === 'cute-dolls') {
+                const result = await dollsCollection.find({ category: req.params.text }).toArray();
+                // console.log(result)
+                return res.send(result);
+            }
         })
 
         // get all dolls
@@ -88,7 +91,7 @@ async function run() {
         // update dolls items
         app.put('/dolls/:id', async (req, res) => {
             const id = req.params.id;
-            console.log(id)
+            // console.log(id)
             const filter = { _id: new ObjectId(id) };
             const options = { upsert: true };
             const updatedDoll = req.body;
